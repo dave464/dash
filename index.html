@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>LOGIN</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link href="https://fonts.googleapis.com/css2?family=Merienda&display=swap" rel="stylesheet">
+	
+     
+</head>
+<body> 
+		<div class="h2order" style="float: left;">
+	<h3>H2Order</h3>
+	<h3>H2Order</h3>
+</div>
+	
+<br><br><br> 
+	
+	
+	
+	
+	<div class="header">
+  <h2>Administrator</h2>
+  </div>
+	
+     <form onsubmit="login()" id="loginForm">
+     	
+	 <div style="background-color: white"><center><small><span id="error" style="color: red"></span></small></center></div>
+         
+		 
+		 <div class="input-group">
+  			<label>Username</label>
+         
+     	<input id="email" type = "text" name = "username"  class = "form-control" required = "required" />
+
+  	</div>
+		 
+		 
+		 <div class="input-group">
+  		<label>Password</label>
+     	<input id="password" type = "password" name = "password" class = "form-control" required = "required" />
+
+
+  	</div><br>
+		 
+	  <a  style ="color: blue;" href="#" onclick="forgotPass()">Forgot Password</a>
+		 
+		  <div class="input-group">
+  	<button style="float:right;"  type="submit" class="btn" name="login_user">Login</button>
+
+  	</div>
+		
+		 
+     </form>
+    
+<br><br><br><br>
+
+
+  <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+            <defs><path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" /></defs>
+            <g class="parallax">
+                <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7" />
+                <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
+                <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
+                <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
+            </g>
+        </svg>
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+	https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-auth.js"></script>
+
+
+
+
+<script src="js/firebase.js"></script>
+<script src="js/adminLog.js"></script>
+
+</body>
+</html>

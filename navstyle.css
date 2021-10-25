@@ -1,0 +1,151 @@
+*{
+margin: 0;
+	padding: 0;
+	font-family: 'Poppins',sans-serif;
+} 
+
+body{
+	background: #020b2b;
+}
+
+.sidebar{
+	position: fixed;
+	height: 100%;
+	width: 305px;
+	background: #0078de;
+	border-radius: 0 100px 0 0;
+	max-height: ;
+}
+
+.sidebar h2{
+ 	position: relative;
+	font-size: 3.5em;
+	font-weight: 800;
+	color: #fff;
+	text-transform: uppercase;
+	text-align: center;
+	margin: 30px 0;
+	color: #fdd600;
+}
+
+.sidebar h2:after{
+	position: absolute;
+	content: '';
+	height: 10px;
+	widows: 50px;
+	bottom: 2px;
+	background: #fff;
+	left: 30%;
+	border-radius: 50px;
+	
+}
+
+.sidebar ol{
+	position: relative;
+	widows: 100%;
+	display: block;
+}
+
+.sidebar ol li a{
+	widows: 100%;
+	text-align: left;
+	position: relative;
+
+
+}
+
+.sidebar ol li a{
+	display: block;
+	text-transform: capitalize;
+	color: #fff;
+	font-size: 1.2em;
+	padding: 5px 30px;
+	margin: 10px 0;
+	text-decoration: none;
+	margin-left: -19px;
+
+}
+
+.bx{
+	margin-right: 10px;
+}
+
+.sidebar ol li:hover{
+	letter-spacing: 0.2px;
+	transition: 0.4s;
+}
+
+.sidebar ol li a:hover{
+	background: #020b2b;
+	border-left: 5px solid #fff;
+}
+
+.sidebar ol li a:hover:before{
+	position: absolute;
+	content: '';
+	height: 30px;
+	width: 30px;
+	background: #0078de;
+	right: 0;
+	bottom: 100%;
+	border-bottom-right-radius: 13px;
+	box-shadow: 0 17px 0 #020b2b;
+}
+
+
+.sidebar ol li a:hover:after{
+	position: absolute;
+	content: '';
+	height: 30px;
+	width: 30px;
+	background: #0078de;
+	right: 0;
+	top: 100%;
+	border-bottom-right-radius: 13px;
+	box-shadow: 0 -17px 0 #020b2b;
+}
+
+
+
+.logo_name {
+  position: relative;
+  margin-top: 65px;
+  margin-left: 45%;
+
+}
+.logo_name h3{
+  position: absolute;
+  font-family: merienda;
+  color: #fff;
+  transform: translate(-50%,-50%);
+  font-size: 50px;
+
+}
+.logo_name h3:nth-child(1){
+  color: transparent;
+  -webkit-text-stroke :3.3px white;
+}
+.logo_name h3:nth-child(2){
+  color: #020b2b;
+  animation: animate 4s ease-in-out infinite;
+}
+@keyframes animate 
+{
+  0%,100%
+  {
+    clip-path: polygon(1% 47%, 20% 43%, 34% 47%, 44% 54%, 56% 58%, 74% 55%, 87% 52%, 100% 45%, 100% 100%, 0 100%);
+  }
+  50%
+  {
+    clip-path: polygon(0 48%, 10% 56%, 25% 59%, 44% 56%, 59% 49%, 72% 42%, 89% 39%, 100% 45%, 100% 100%, 0 100%);}
+
+}      
+
+
+.tbl-contain{
+	max-height: 3000px;
+	max-width: 3000px;
+	background-color: #fff;
+
+}
+
