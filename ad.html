@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
    
-    <title> Water Station </title>
+    <title> Dashboard </title>
     <link rel="stylesheet" type="text/css" href="navstyle.css">
     <link rel="icon" type="image/x-icon" href="img/water.png">
     
@@ -55,17 +55,23 @@
     </div>
 	
   <br><br>
-    <div id="banner" style=" margin-left:25%; height: 80px; border-radius: .4rem;
+    <div id="banner1" style=" margin-left:25%; height: 80px; border-radius: .4rem;
     width: 980px;
     max-height: 3000px;
     max-width: 3000px;
-    background-color: #fff;"><br> <h1 style="margin-left: 35px; margin-top: -2px;  font-family: Georgia;">Water Rifilling Station</h1></div>
+    background-color: #fff;" ><br> <h1 style="margin-left: 35px; margin-top: -2px;  font-family: Georgia;">Dashboard</h1>
+    </div>
 
 
+<div style=" margin-left:25%; height: 120px; border-radius: .4rem; margin-top: 20px;
+width: 400px;background-color: #045de9;
+background-image: linear-gradient(315deg, #045de9 0%, #09c6f9 74%); border:2px solid white;" >
+<i class="bx bxs-store " style="font-size: 100px; margin-top:10px; color:black;text-shadow: 2px 2px white; float:right; margin-right:30px;"></i> 
+<h1  id="banner" style="font-size: 60px; float: left; margin-left: 35px; margin-top: -3px; color:white; text-shadow: 3px 3px black; font-family: Georgia;"></h1>
+<p style="font-size: 26px;margin-top:73px; margin-left:20px;  color:white;font-family: Georgia;text-shadow: 2px 2px black;">Total Waterstations</p></div>
 	
-	
 
-<div id="piechart_3d" style="width: 300px; height: 200px; margin-left: 400px;"></div>
+
 
       <br>
 
@@ -92,29 +98,8 @@
 				
 		 <br>
 </div>
+<br><br>
 
-
-<script >
-  
-
-  
- var config = {
-    apiKey: "AIzaSyBPfwe1EXj_CDoGLVSnougb8ntqtJC7dKg",
-    authDomain: "h2order-13d55.firebaseapp.com",
-    databaseURL: "https://h2order-13d55-default-rtdb.asia-southeast1.firebasedatabase.app",
-    projectId: "h2order-13d55",
-    storageBucket: "h2order-13d55.appspot.com",
-    messagingSenderId: "1074930917295",
-    appId: "1:1074930917295:web:c5fcbeb45053ce6355d95a",
-    measurementId: "G-3Z6R95RYGC"
-  };
-
-  // Initialize Firebase
-  firebase.initializeApp(config);
-  firebase.analytics();
-
-
-</script>
 
 
 
@@ -186,26 +171,8 @@ console.log("Loading data ends ...");
 
 
 
- $('#ex-table thead th').each( function () {
-        var title = $(this).text();
-        $(this).html( title+'<br/><input type="text" placeholder="Search '+title+'" />' );
-    } );
- 
-    // DataTable
-    var table = $('#ex-table').DataTable();
- 
-    // Apply the search
-    table.columns().every( function () {
-        var that = this;
- 
-        $( 'input', this.header() ).on( 'keyup change', function () {
-            if ( that.search() !== this.value ) {
-                that.search( this.value )
-                    .draw();
-            }
-        } );
-    } );
 
+    
         var t =$('#ex-table').DataTable({
           "bDestroy": true,    
           data: dataSrc,
@@ -293,32 +260,33 @@ document.addEventListener("DOMContentLoaded", function(event) {
     });  
 
 
-
-    google.charts.load("current", {packages:["corechart"]});
-      google.charts.setOnLoadCallback(drawChart);
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Task', 'Hours per Day'],
-          ['Brgy.1',   count],
-         
-          ['Sleep',    7]
-        ]);
-
-        var options = {
-          title: 'My Daily Activities',
-          is3D: true,
-        };
-
-        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
-        chart.draw(data, options);
-      }
-
-      var ref = firebase.database().ref('waterstation/${id}').once('value',function(snapshot){
+ var ref = firebase.database().ref('waterstation').once('value',function(snapshot){
     var count=snapshot.numChildren();
-   
     
+     console.log(snapshot.numChildren());
+     document.getElementById("banner").innerHTML=count;
      
-    });
+    
+ });
+ 
+ var ref = firebase.database().ref("waterstation/");
+ const count3 = ref.orderByChild("Address").equalTo("Brgy.1").on("child_added", function(snapshot) {
+     const count2 =[]
+  var count1=snapshot.val().Address;
+
+   count2.push(count1);
+   console.log(count2.length);
+  
+return count2
+  });
+
+console.log(count3)
+
+document.getElementById("banner1").innerHTML=count3.length
+ 
+  
+
+
 
 	   </script>
 	
