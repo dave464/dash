@@ -10,7 +10,7 @@
 /* ------------ header ------------ */
 .header{
     width: 320px;
-    height:100px;
+    height:120px;
     background-image: url('../img/bgg.jpeg');
     background-size: 100% 200%;
     background-repeat: no-repeat;
@@ -39,15 +39,15 @@
     bottom: 10px;
     left: 10px;
     color: #FFF;
-    font-size: 25px;
+    font-size: 30px;
     font-family:  Merienda;
 }
 
 /* ------------ content ------------ */
 .content{
     width:320px;
-    height: 350px;
-    max-height:350px;
+    height: 490px;
+    max-height:490px;
     background-color: #FFF;
     overflow: auto;
 }

@@ -299,9 +299,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
           ['Task', 'Hours per Day'],
-          ['Brgy.1',   count],
+          ['Passed',   state],
          
-          ['Sleep',    7]
+          ['Failed',    failedCount]
         ]);
 
         var options = {
@@ -313,12 +313,42 @@ document.addEventListener("DOMContentLoaded", function(event) {
         chart.draw(data, options);
       }
 
-      var ref = firebase.database().ref('waterstation/${id}').once('value',function(snapshot){
-    var count=snapshot.numChildren();
+      var ref = firebase.database().ref("inspection/");
+      let state = 0;
+      const count3 = ref
+        .orderByChild("Status")
+        .equalTo("Passed")
+        .on("child_added", function (snapshot) {
+          
+          const count2 = [];
+          var count1 = snapshot.val().Status;
+
+          count2.push(count1);
+          console.log(count2);
+
+          state = state + 1;
+          
+        });
    
-    
+        var ref = firebase.database().ref("inspection/");
+      let failedCount = 0;
+      const count4 = ref
+        .orderByChild("Status")
+        .equalTo("Failed")
+        .on("child_added", function (snapshot) {
+          
+          const count6 = [];
+          var count5 = snapshot.val().Status;
+
+          count6.push(count5);
+          console.log(count6);
+
+          failedCount=failedCount + 1;
+         
+        });
+   
      
-    });
+  
 
 	   </script>
 	
