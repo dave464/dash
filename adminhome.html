@@ -95,10 +95,18 @@
         max-height: 3000px;
         max-width: 3000px;
         background-color: #fff;
+        background-image: url('img/www.jpg');
+        background-size: 350% 92%;
+        background-repeat: no-repeat;
+        border-radius: 10px 10px 10px 10px;
+        position: relative;
+        border:2px solid #fff ;
+        
       "
+      
     >
       <br />
-      <h1 style="margin-left: 35px; margin-top: -2px; font-family: Georgia">
+      <h1 style="margin-left: 35px; margin-top: -2px; font-family: Georgia; color:black">
         Dashboard
       </h1>
     </div>
@@ -206,58 +214,25 @@
 
  
   <div 
-    id="piechart_3d" 
+   
       style="
         width: 500px; 
-        height: 250px; 
+        height: 300px; 
         margin-right: 50px;
         margin-top:-250px;
         float:right; 
+       
         ">
+
+<a class="weatherwidget-io" href="https://forecast7.com/en/14d09120d69/nasugbu/" data-label_1="NASUGBU" data-label_2="WEATHER" data-font="Georgia" data-theme="weather_one" >NASUGBU WEATHER</a>
+<script>
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+</script>
+
   </div>
+   <br />
 
 
-
-    <br />
-
-    <div
-      id="tbl-contain"
-      style="
-        margin-left: 25%;
-        width: 72%;
-        height: 100%;
-        background-color: white;
-        border-radius: 0.4rem;
-      "
-    >
-      <br />
-      <div id="container">
-        <table
-          id="ex-table"
-          class="table table-striped table-bordered"
-          style="width: 80%; margin-left: 100px"
-        >
-          <thead
-            style="
-              background-color: #11101d;
-              border: 3px solid black;
-              color: white;
-            "
-          >
-            <tr style="border: 3px solid black">
-              <th style="border: 3px solid black">ID</th>
-              <th style="border: 3px solid black">Name</th>
-              <th style="border: 3px solid black">Address</th>
-            </tr>
-          </thead>
-
-          <tbody id="tbody1"></tbody>
-        </table>
-      </div>
-
-      <br />
-    </div>
-    <br /><br />
 
     <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-app.js"></script>
     <!-- TODO: Add SDKs for Firebase products that you want to use
@@ -265,7 +240,7 @@ https://firebase.google.com/docs/web/setup#available-libraries -->
     <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-analytics.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-database.js"></script>
 
-    <script type="module">
+    <script type="text/javascript">
       var config = {
         apiKey: "AIzaSyBPfwe1EXj_CDoGLVSnougb8ntqtJC7dKg",
         authDomain: "h2order-13d55.firebaseapp.com",
@@ -282,125 +257,7 @@ https://firebase.google.com/docs/web/setup#available-libraries -->
       firebase.initializeApp(config);
       firebase.analytics();
 
-      var dataSrc = [];
-      var count = 1;
-
-      function loadData(callback) {
-        var databaseRef = firebase.database().ref("waterstation/");
-
-        //var table = $('#ex-table').DataTable();
-
-        console.log("Loading data starts ...");
-        databaseRef.on("child_added", function (data) {
-          var storageObj = data.val();
-          console.log("Loading data starts3 ...");
-
-          var dataSet = [storageObj.Name, storageObj.Name, storageObj.Address];
-
-          //table.rows.add([dataSet]).draw();
-          dataSrc.push(dataSet);
-
-          console.log("dataSrc= " + dataSrc);
-
-          console.log("Loading data..." + count);
-
-          count++;
-
-          //  $.holdReady( true );
-          //$('#ex-table').DataTable().clear().destroy();
-          //
-
-          console.log("Loading data ends ...");
-
-          console.log("table initialization started ...");
-
-          var t = $("#ex-table").DataTable({
-            bDestroy: true,
-            data: dataSrc,
-
-            columnDefs: [
-              {
-                searchable: false,
-
-                orderable: false,
-
-                type: "title-string",
-                targets: 0,
-              },
-            ],
-            order: [[1, "asc"]],
-
-            //   data: dataSrc,
-
-            dom: "lfrtipB",
-            buttons: [
-              {
-                extend: "colvis",
-                title: "Records",
-              },
-              {
-                extend: "copyHtml5",
-                title: "Records",
-              },
-              {
-                extend: "csvHtml5",
-                title: "Records",
-              },
-              {
-                extend: "excelHtml5",
-                title: "Records",
-              },
-              {
-                extend: "pdfHtml5",
-                title: "Records",
-              },
-              "print",
-            ],
-            lengthMenu: [
-              [10, 20, 30, 40, 50, -1],
-              [10, 20, 30, 40, 50, "All"],
-            ],
-          });
-
-          console.log("table initialization ends ...");
-
-          t.on("order.dt search.dt", function () {
-            t.column(0, { search: "applied", order: "applied" })
-              .nodes()
-              .each(function (cell, i) {
-                cell.innerHTML = i + 1;
-                t.cell(cell).invalidate("dom");
-              });
-          }).draw();
-        });
-
-        if (callback) {
-          callback();
-        }
-      }
-
-      function downloadObjectAsJson(exportObj, exportName) {
-        var dataStr =
-          "data:text/json;charset=utf-8," +
-          encodeURIComponent(JSON.stringify(exportObj));
-        var downloadAnchorNode = document.createElement("a");
-        downloadAnchorNode.setAttribute("href", dataStr);
-        downloadAnchorNode.setAttribute("download", exportName + ".json");
-        //    document.body.appendChild(downloadAnchorNode); // required for firefox
-        var container = document.getElementById("container");
-        container.appendChild(downloadAnchorNode);
-        //    downloadAnchorNode.click();
-        //    downloadAnchorNode.remove();
-      }
-
-      document.addEventListener("DOMContentLoaded", function (event) {
-        var NewFile = "records";
-        loadData(downloadObjectAsJson(dataSrc, NewFile));
-
-        // loadData(intializeDataTable);
-        // var tableData = "["+dataSrc+"]";
-      });
-
+     
 
   //------------- DASHBOARD--------------//
       var ref = firebase
@@ -538,6 +395,19 @@ https://firebase.google.com/docs/web/setup#available-libraries -->
       input {
         color: black;
         font-weight: 400;
+      }
+
+      #weatherwidget-io a {
+        height: 500px; 
+      }
+
+      #weatherWidgetInner{
+        height: 250px;
+
+      } 
+
+      #weatherInfo {
+        height: 500px; 
       }
     </style>
 
