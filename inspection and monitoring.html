@@ -50,11 +50,20 @@
         <li><a href="adminhome.html" ><i class="bx bx-grid-alt "></i>dashboard</a></li>
         <li><a href="Calendar.html"><i class="bx bxs-calendar"></i>Calendar</a></li>
         <li><a href="Inspection and monitoring.html"><i class="bx bxs-search-alt-2"></i>inspection and monitoring</a></li>
-                <li><a href="announcement.html" ><i class="bx bxs-megaphone "></i>Announcements</a></li>
-                <li><a href="#" ><i onclick="logout()" class="bx bx-log-out "></i>Logout</a></li>
-
+     <li><a href="announcement.html" ><i class="bx bxs-megaphone "></i>Announcements</a></li>
+         <li><a href="#" onclick="logout()"  ><i class="bx bx-log-out "></i>Logout</a></li>
+         
+         <svg class="waves" style="margin-top:220px;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+            <defs><path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" /></defs>
+            <g class="parallax">
+                <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7" />
+                <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
+                <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
+                <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
+            </g>
+        </svg>
       </ol>
-    
+      
     </div>
 
         <br><br>
@@ -68,11 +77,9 @@
         background-repeat: no-repeat;
         border-radius: 10px 10px 10px 10px;
         position: relative;
-        border:2px solid #fff ;"><br>
-
-         <h1 style="margin-left: 35px; margin-top: -10px; 
-         text-shadow: 2px 2px white;
-          font-family: Georgia;">Inspection And Monitoring</h1></div>
+        border:2px solid #fff ;">
+        
+    <br> <h1 style="margin-left: 35px; margin-top: -10px;  font-family: Georgia;">Inspection And Monitoring</h1></div>
 
   <br>
     <div id="tbl-contain" style=" margin-left:25%; width: 72%;height:100%; max-height:1000px; background-color: white;  border-radius: .4rem;">
@@ -106,7 +113,7 @@
 
                                         <select class = "form-control" required = required id = "Status">
                                 <option value = "">Choose an option</option>
-                                <option value = "Passed">Passed</option>
+                                <option value = "Passed" > Passed</option>
                                 <option value = "Failed">Failed</option>
                                 
                             </select>
@@ -177,7 +184,7 @@
 <script src='https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js'></script>
 <script src='https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js'></script>
 
-
+<script type="text/javascript" src="js/adminhome.js"></script>
      <script type="text/javascript" src="inspec.js"></script>
 
    <style >

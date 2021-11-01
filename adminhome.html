@@ -79,9 +79,21 @@
           >
         </li>
         <li style="font-size: 1.1em">
-          <a href="#"><i onclick="logout()" class="bx bx-log-out"></i>Logout</a>
+          <a href="#" onclick="logout()" ><i class="bx bx-log-out"></i>Logout</a>
         </li>
       </ol>
+
+
+      
+   <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+    <defs><path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" /></defs>
+    <g class="parallax">
+        <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7" />
+        <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
+        <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
+        <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
+    </g>
+</svg>
     </div>
 
     <br /><br />
@@ -115,6 +127,8 @@
       </h1>
     </div>
 
+
+<br><br>
     <div
       style="
         margin-left: 25%;
@@ -221,7 +235,7 @@
    
       style="
         width: 500px; 
-        height: 300px; 
+        height: 230px; 
         margin-right: 50px;
         margin-top:-250px;
         float:right; 
@@ -233,8 +247,24 @@
 !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
 </script>
 
+<br><br><br>
+<br><br><br>
   </div>
    <br />
+
+   <div id="piechart_3d" style="
+   width: 500px; 
+   height: 300px;
+    margin-right: 35px;
+    float:right;
+
+    "
+    
+    >
+    <br><br><br></div> 
+    <br><br><br>
+
+
 
 
 
@@ -415,6 +445,8 @@ https://firebase.google.com/docs/web/setup#available-libraries -->
       }
     </style>
 
+
+    <script src="js/adminhome.js"></script>
     <script src="js/script.js"></script>
   </body>
 </html>

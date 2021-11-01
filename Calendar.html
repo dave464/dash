@@ -8,7 +8,7 @@
     <title> Calendar </title>
     <link rel="stylesheet" href="navstyle.css">
      <link rel="stylesheet" href="css/todostyle.css">
-     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+     <link rel="stylesheet" type="text/css" href="css/bootstrap1.min.css">
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,19 +30,31 @@
   <div class="sidebar">
             <div class="logo-details">
      
-        <div class="logo_name"> <h3> H2Order </h3><h3>H2Order</h3></div>
+        <div class="logo_name "  style="margin-top: 40px"> <h3> H2Order </h3><h3>H2Order</h3></div>
       
     </div>
-  <br> <br><br>
+  <br> <br><br><br>
+  
       <ol>
-        <li><a href="adminhome.html" ><i class="bx bx-grid-alt "></i>dashboard</a></li>
-        <li><a href="Calendar.html"><i class="bx bxs-calendar"></i>Calendar</a></li>
-        <li><a href="inspection and monitoring.html"><i class="bx bxs-search-alt-2"></i>inspection and monitoring</a></li>
-                <li><a href="announcement.html" ><i class="bx bxs-megaphone "></i>Announcements</a></li>
-                <li><a href="#" ><i onclick="logout()" class="bx bx-log-out "></i>Logout</a></li>
+        <li style="font-size: 1.1em"><a href="adminhome.html" ><i class="bx bx-grid-alt "></i>dashboard</a></li>
+        <li style="font-size: 1.1em"><a href="Calendar.html"><i class="bx bxs-calendar"></i>Calendar</a></li>
+        <li style="font-size: 1.1em"><a href="inspection and monitoring.html"><i class="bx bxs-search-alt-2"></i>inspection and monitoring</a></li>
+                <li style="font-size: 1.1em"><a href="announcement.html" ><i class="bx bxs-megaphone "></i>Announcements</a></li>
+                <li style="font-size: 1.1em"><a href="#" onclick="logout()" ><i  class="bx bx-log-out "></i>Logout</a></li>
+
+
+               
 
       </ol>
-    
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs><path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" /></defs>
+        <g class="parallax">
+            <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7" />
+            <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
+            <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
+            <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
+        </g>
+    </svg>
     </div>
 
 <br><br>
@@ -57,7 +69,7 @@
         border-radius: 10px 10px 10px 10px;
         position: relative;
         border:2px solid #fff ;">
-        <br> <h1 style="margin-left: 35px; margin-top: -10px; 
+        <br> <h1 style="margin-left: 35px; margin-top: -2px; 
         text-shadow: 2px 2px white; font-family: Georgia;">Calendar</h1>
     </div> 
 
@@ -67,22 +79,7 @@
 
 	
 	
-  
-     
 
-
-      
-      
-
-
-	  
-	
-	  
-	  
-	  
-	  
-	  
-	  
 	<div class="calendar">
  
 	  <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&bgcolor=%23ffffff&ctz=Asia%2FManila&showNav=1&showTitle=0&showPrint=1&showCalendars=1&src=cnYwNTE5M2pyOWo0aWljdGU1ZXZsajUxbzhAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&src=cHRuaGc2aTdqdjVkbXFrczBnaDQ1Z3JjZjhAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&src=ZW4ucGhpbGlwcGluZXMjaG9saWRheUBncm91cC52LmNhbGVuZGFyLmdvb2dsZS5jb20&color=%23C0CA33&color=%23F4511E&color=%230B8043" style="border:solid 3px white" width="600" height="600" frameborder="0" scrolling="no"></iframe>
