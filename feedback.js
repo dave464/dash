@@ -160,3 +160,13 @@ $('.edit').click(function(){
 
     
 });
+
+
+
+document.getElementById('save').onclick = function(){
+    Swal.fire(
+        'Save!',
+        'The Data has been saved',
+        'success'
+      )
+  };

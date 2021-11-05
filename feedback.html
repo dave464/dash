@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Inspection and Monitoring</title>  
+    <title>Feedback</title>  
     <link rel="icon" type="image/x-icon" href="img/water.png">
     
     <link rel="stylesheet" type="text/css" href="navstyle.css"> 
@@ -127,16 +127,17 @@
                                     </div>  
                                     
                                     <div class="form-group">
-                                        <label>Comment</label>
+                                        <label>Comment</label><br>
+                                    <textarea id="comment" style="width:470px; height: 100px;"></textarea>
     
-                                <input id="comment" type="text" class="form-control" >
+                               
     
     
                                         </div>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal" tabindex="2">Cancel</button>
-                                    <button type="submit" value="btnSave" class="btn btn-primary" translate="1">Save</button>
+                                    <button id ="save" type="submit" value="btnSave" class="btn btn-primary" translate="1">Save</button>
                                 </div>
                             </form>
                     </div>
@@ -156,7 +157,7 @@
 
                         </tr>
                     </thead>
-                    <tbody class="">
+                    <tbody class="text-center">
                                                  
                     </tbody>   
                 </table>

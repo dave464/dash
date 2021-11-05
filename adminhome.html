@@ -233,42 +233,31 @@
 
 
  
-  <div 
+  <div id="piechart_3d"
    
       style="
         width: 500px; 
-        height: 230px; 
-        margin-right: 50px;
+        height: 250px; 
+        margin-right: 40px;
         margin-top:-250px;
         float:right; 
        
         ">
 
-<a class="weatherwidget-io" href="https://forecast7.com/en/14d09120d69/nasugbu/" data-label_1="NASUGBU" data-label_2="WEATHER" data-font="Georgia" data-theme="weather_one" >NASUGBU WEATHER</a>
-<script>
-!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
-</script>
-
 <br><br><br>
 <br><br><br>
   </div>
-   <br />
-
-   <div id="piechart_3d" style="
-   width: 500px; 
-   height: 300px;
-    margin-right: 35px;
-    float:right;
-
-    "
-    
-    >
-    <br><br><br></div> 
-    <br><br><br>
+ 
+  <br><br><br>
 
 
-
-
+    <div id="top_x_div" 
+    style="width: 980px; 
+    height: 500px;
+    margin-top: 30px;
+    margin-left : 330px;
+    border: 5px solid white">
+    </div> <br><br><br><br><br><br>
 
     <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-app.js"></script>
     <!-- TODO: Add SDKs for Firebase products that you want to use
@@ -384,23 +373,90 @@ https://firebase.google.com/docs/web/setup#available-libraries -->
         });
 
 
+//-----------------Bar Chart-------------------//
+
+google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawStuff);
+
+      function drawStuff() {
+        var data = new google.visualization.arrayToDataTable([
+          ['Barangay', 'No. of Waterstation'],
+          ["Brgy.1", B_1Count], ["Brgy.2",B_2Count], ["Brgy.3", 1], ["Brgy.4", 4],  ['Brgy.5', 3],
+          ["Brgy.6", 4], ["Brgy.7", 1], ["Brgy.8", 2], ["Brgy.9", 1], ["Brgy.10", 3]
+         
+         
+         
+        ]);
+
+        var options = {
+        
+          width: 975,
+          legend: { position: 'none' },
+          chart: { title: 'Number of Waterstation Per Barangay',
+                   subtitle: '' },
+          bars: 'vertical;', // Required for Material Bar Charts.
+          axes: {
+            y: {
+              0: { side: 'top', label: 'Number of Waterstation per Barangay'} // Top x-axis.
+            }
+          },
+          bar: { groupWidth: "90%" }
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('top_x_div'));
+        chart.draw(data, options);
+      };
+
+//-------------------------Brgy.1----------------------------------//
+
+var ref = firebase.database().ref("waterstation/");
+      let B_1Count = 0;
+      const B_1Count3 = ref
+        .orderByChild("Address")
+        .equalTo("Brgy.1")
+        .on("child_added", function (snapshot) {
+          
+          const  B_1Count2 = [];
+          var B_1Count1 = snapshot.val().Address;
+
+          B_1Count2.push(B_1Count1);
+          console.log(B_1Count2);
+
+          B_1Count = B_1Count + 1;
+          
+        });
+
+
+      //-------------------------Brgy.2----------------------------------//
+
+var ref = firebase.database().ref("waterstation/");
+      let B_2Count = 0;
+      const B_2Count3 = ref
+        .orderByChild("Address")
+        .equalTo("Brgy.2")
+        .on("child_added", function (snapshot) {
+          
+          const  B_2Count2 = [];
+          var B_1Count1 = snapshot.val().Address;
+
+          B_2Count2.push(B_2Count1);
+          console.log(B_2Count2);
+
+          B_2Count = B_2Count + 1;
+          
+        });
+
+
+
+
+
+
+
 
 
 
     </script>
 
-    <script src="https:////cdn.datatables.net/plug-ins/1.11.3/sorting/title-string.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.colVis.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
-    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
-    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
     <!-- The core Firebase JS SDK is always required and must be listed first -->
 
     <style type="text/css">

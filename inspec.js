@@ -43,9 +43,7 @@ $(document).ready(function() {
                          //hide the ID column which is the [0]                          
                     },
 
-                  
-                  
-
+                   
 
                     {
                         targets: -1,        
@@ -54,10 +52,6 @@ $(document).ready(function() {
                 ],
 
                 
-
-
-
-
 
 
             });
@@ -158,5 +152,18 @@ $('.edit').click(function(){
     });  
 
 
+   
+
+    
     
 });
+
+
+document.getElementById('save').onclick = function(){
+    Swal.fire(
+        'Save!',
+        'The Data has been saved',
+        'success'
+      )
+  };
+  
