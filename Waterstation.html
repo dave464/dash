@@ -25,7 +25,7 @@
 
    
     <script src="https://kit.fontawesome.com/dbed6b6114.js" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
    </head>
 <body>
 
@@ -65,10 +65,7 @@
 	
 	
 
-<div id="piechart_3d" style="width: 300px; height: 200px; margin-left: 400px;"></div>
-
       <br>
-
 
  <div id="tbl-contain" style=" margin-left:25%; width: 72%;height:100%;  background-color: white;  border-radius: .4rem;">
 		
@@ -79,8 +76,7 @@
 						<tr style=" border: 3px solid black;" >
 							<th style=" border: 3px solid black;">ID</th>
 							<th style=" border: 3px solid black;">Name</th>
-							<th style=" border: 3px solid black;">Address</th>	
-           		
+							<th style=" border: 3px solid black;">Address</th>				
 						</tr>
 					</thead>
 					
@@ -95,44 +91,31 @@
 </div>
 
 
-<script >
-  
+	  
 
-  
- var config = {
-    apiKey: "AIzaSyBPfwe1EXj_CDoGLVSnougb8ntqtJC7dKg",
-    authDomain: "h2order-13d55.firebaseapp.com",
-    databaseURL: "https://h2order-13d55-default-rtdb.asia-southeast1.firebasedatabase.app",
-    projectId: "h2order-13d55",
-    storageBucket: "h2order-13d55.appspot.com",
-    messagingSenderId: "1074930917295",
-    appId: "1:1074930917295:web:c5fcbeb45053ce6355d95a",
-    measurementId: "G-3Z6R95RYGC"
-  };
+<div id="piechart_3d" style="
+width: 500px; 
+height: 300px;
+ margin-right: 35px;
+ float:right;
 
-  // Initialize Firebase
-  firebase.initializeApp(config);
-  firebase.analytics();
+ "
+ 
+ >
 
-
-</script>
-
-
-
-
-
+ <script
+      type="text/javascript"
+      src="https://www.gstatic.com/charts/loader.js"
+    ></script>
    
 <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-app.js"></script>
 <!-- TODO: Add SDKs for Firebase products that you want to use
 https://firebase.google.com/docs/web/setup#available-libraries -->
 <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-analytics.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-database.js"></script>
-	
-  
-  
-  
-  <script type="module">
-	
+	<script type="module">
+		
+
   
  var config = {
     apiKey: "AIzaSyBPfwe1EXj_CDoGLVSnougb8ntqtJC7dKg",
@@ -150,207 +133,21 @@ https://firebase.google.com/docs/web/setup#available-libraries -->
   firebase.analytics();
 
   
-
-var dataSrc = [];
-var count =1;
-
-
-function loadData(callback){
-  var databaseRef = firebase.database().ref("waterstation/");
-
-  //var table = $('#ex-table').DataTable();
-
-  console.log("Loading data starts ...");
-  databaseRef.on("child_added", function(data) {
-     var storageObj = data.val();
-    console.log("Loading data starts3 ...");
-      
-     var dataSet = [storageObj.Name,storageObj.Name, storageObj.Address];
-     
-    
-
-   //table.rows.add([dataSet]).draw(); 
-    dataSrc.push(dataSet);
-  
-    console.log("dataSrc= "+dataSrc);
-      
-    console.log("Loading data..."+count);
-      
-    count++;
-      
- //  $.holdReady( true );
-//$('#ex-table').DataTable().clear().destroy();
-  //    
-  
-console.log("Loading data ends ...");
-    
-     console.log("table initialization started ...");
-
-
-
- $('#ex-table thead th').each( function () {
-        var title = $(this).text();
-        $(this).html( title+'<br/><input type="text" placeholder="Search '+title+'" />' );
-    } );
- 
-    // DataTable
-    var table = $('#ex-table').DataTable();
- 
-    // Apply the search
-    table.columns().every( function () {
-        var that = this;
- 
-        $( 'input', this.header() ).on( 'keyup change', function () {
-            if ( that.search() !== this.value ) {
-                that.search( this.value )
-                    .draw();
-            }
-        } );
-    } );
-
-        var t =$('#ex-table').DataTable({
-          "bDestroy": true,    
-          data: dataSrc,
-
-
-          "columnDefs": [ {
-            "searchable": false,
-
-            "orderable": false,
-           
-            type:'title-string', targets: 0,
-        } ],
-        "order": [[ 1, 'asc' ]],
-
-       //   data: dataSrc,
-          
-          dom: 'lfrtipB', buttons: [
-
-          			 {
-                          extend: 'colvis',
-                          title:  'Records'
-                      }, 
-                    {
-                          extend: 'copyHtml5',
-                          title:  'Records'
-                      },
-                      {
-                          extend: 'csvHtml5',
-                          title:  'Records'
-                      },
-                      {
-                          extend: 'excelHtml5',
-                          title:  'Records'
-                      },
-                      {
-                          extend: 'pdfHtml5',
-                          title:  'Records'
-                      },
-                      'print'
-                        ],
-                 lengthMenu: [[10, 20, 30, 40,50, -1], [10,20,30,40, 50, "All"]]
-
-
-          });
-
-      console.log("table initialization ends ...");
-
-    t.on( 'order.dt search.dt', function () {
-        t.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
-            cell.innerHTML = i+1;
-            t.cell(cell).invalidate('dom');
-        } );
-    } ).draw();
- 
-
-  });
-  
-   if(callback){callback();}
-}
-
-
-
-function 	downloadObjectAsJson(exportObj, exportName){
-  
-  var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportObj));
-    var downloadAnchorNode = document.createElement('a');
-    downloadAnchorNode.setAttribute("href",     dataStr);
-    downloadAnchorNode.setAttribute("download", exportName + ".json");
-//    document.body.appendChild(downloadAnchorNode); // required for firefox
-  var container = document.getElementById('container');
-container.appendChild(downloadAnchorNode);
-//    downloadAnchorNode.click();
-//    downloadAnchorNode.remove();
-  
-}
-
-document.addEventListener("DOMContentLoaded", function(event) {
-  var NewFile = "records";
-	loadData(downloadObjectAsJson(dataSrc, NewFile));
-  
- // loadData(intializeDataTable);
-   // var tableData = "["+dataSrc+"]";
-
-  
-    });  
-
-
-
-    google.charts.load("current", {packages:["corechart"]});
-      google.charts.setOnLoadCallback(drawChart);
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Task', 'Hours per Day'],
-          ['Passed',   state],
-         
-          ['Failed',    failedCount]
-        ]);
-
-        var options = {
-          title: 'My Daily Activities',
-          is3D: true,
-        };
-
-        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
-        chart.draw(data, options);
-      }
-
-      var ref = firebase.database().ref("inspection/");
+  var ref = firebase.database().ref("waterstation/");
       let state = 0;
       const count3 = ref
-        .orderByChild("Status")
-        .equalTo("Passed")
+        .orderByChild("Address")
+        .equalTo("Brgy.4")
         .on("child_added", function (snapshot) {
-          
           const count2 = [];
-          var count1 = snapshot.val().Status;
+          var count1 = snapshot.val().Address;
 
           count2.push(count1);
           console.log(count2);
 
           state = state + 1;
-          
+          document.getElementById("banner").innerHTML = state;
         });
-   
-        var ref = firebase.database().ref("inspection/");
-      let failedCount = 0;
-      const count4 = ref
-        .orderByChild("Status")
-        .equalTo("Failed")
-        .on("child_added", function (snapshot) {
-          
-          const count6 = [];
-          var count5 = snapshot.val().Status;
-
-          count6.push(count5);
-          console.log(count6);
-
-          failedCount=failedCount + 1;
-         
-        });
-   
-     
-  
 
 	   </script>
 	
