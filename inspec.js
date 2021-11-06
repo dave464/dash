@@ -44,7 +44,7 @@ $(document).ready(function () {
             }
         ],
         "createdRow": function (row, data, index) {
-            $('td', row).eq(1).prevObject[2].innerText = moment(data[3]).format('DD-MM-YYYY')
+            $('td', row).eq(1).prevObject[2].innerText = moment(data[3]).format('MM-DD-YYYY')
 
             if (data[2] == 'Passed') {
 
