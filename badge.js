@@ -22,7 +22,7 @@ const iconClear = '<svg class="bi bi-trash" width="1em" height="1em" viewBox="0 
 var db = firebase.database();
 var Waterstation = db.ref().child("waterstation");
      
- 
+
 
 var dataSet = [];//array to save the values of the inputs fields of the form
 
@@ -50,6 +50,8 @@ var table = $('#tableInspection').DataTable({
 
  
             "createdRow":function(row,data,index){
+                $('td', row).eq(1).prevObject[2].innerText = moment(data[3]).format('MM-DD-YYYY')
+                
                 if (data[2]== 'Passed')
                 {
                     $('td',row).eq(1).css({
