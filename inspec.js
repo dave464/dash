@@ -22,11 +22,12 @@ $(document).ready(function() {
     var db = firebase.database();
     var Waterstation = db.ref().child("inspection");
          
-     
-
+   
     var dataSet = [];//array to save the values of the inputs fields of the form
 
-
+    moment().format('LL'); 
+   
+ 
     var table = $('#tableInspection').DataTable({
                
                 pageLength : 10,
@@ -43,8 +44,7 @@ $(document).ready(function() {
                          //hide the ID column which is the [0]                          
                     },
 
-                   
-
+                
                     {
                         targets: -1,        
                         defaultContent: "<div class='wrapper text-center'><div class='btn-group'><button class='btnEdit btn btn-primary' data-toggle='tooltip' title='Edit'>"+iconEdit+"</button><button class='btnDelete btn btn-danger' style='margin-left:6px;' data-toggle='tooltip' title='Delete'>"+iconClear+"</button></div></div>"
@@ -52,12 +52,31 @@ $(document).ready(function() {
                 ],
 
                 
+                "createdRow":function(row,data,index){
+                    if (data[2]== 'Passed')
+                    {
+                        $('td',row).eq(1).css({
+                            
+                            'color': 'green',
+                        });
+                    }
 
+
+                   else if(data[2]== 'Failed')
+                    {
+                        $('td',row).eq(1).css({
+                           
+                            'color': 'red',
+                        });
+                    }
+                }
+
+                
 
             });
 
 
-
+          
 
 $('.edit').click(function(){
      
@@ -167,3 +186,4 @@ document.getElementById('save').onclick = function(){
       )
   };
   
+

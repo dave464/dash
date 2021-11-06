@@ -48,6 +48,25 @@ var table = $('#tableInspection').DataTable({
 
             
 
+ 
+            "createdRow":function(row,data,index){
+                if (data[2]== 'Passed')
+                {
+                    $('td',row).eq(1).css({
+                        
+                        'color': 'green',
+                    });
+                }
+
+
+               else if(data[2]== 'Failed')
+                {
+                    $('td',row).eq(1).css({
+                       
+                        'color': 'red',
+                    });
+                }
+            }
 
 
 
