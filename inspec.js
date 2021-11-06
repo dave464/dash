@@ -1,17 +1,17 @@
-$(document).ready(function() {
-        var config = {
+$(document).ready(function () {
+    var config = {
         // FIREBASE
-         apiKey: "AIzaSyBPfwe1EXj_CDoGLVSnougb8ntqtJC7dKg",
-  authDomain: "h2order-13d55.firebaseapp.com",
-  databaseURL: "https://h2order-13d55-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "h2order-13d55",
-  storageBucket: "h2order-13d55.appspot.com",
-  messagingSenderId: "1074930917295",
-  appId: "1:1074930917295:web:c5fcbeb45053ce6355d95a",
-  measurementId: "G-3Z6R95RYGC"
-    };    
-    firebase.initializeApp(config); 
-    
+        apiKey: "AIzaSyBPfwe1EXj_CDoGLVSnougb8ntqtJC7dKg",
+        authDomain: "h2order-13d55.firebaseapp.com",
+        databaseURL: "https://h2order-13d55-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "h2order-13d55",
+        storageBucket: "h2order-13d55.appspot.com",
+        messagingSenderId: "1074930917295",
+        appId: "1:1074930917295:web:c5fcbeb45053ce6355d95a",
+        measurementId: "G-3Z6R95RYGC"
+    };
+    firebase.initializeApp(config);
+
     var rowEliminated; //to capture the deleted row
     var rowEdited; //to capture the edited or updated row
 
@@ -21,169 +21,135 @@ $(document).ready(function() {
 
     var db = firebase.database();
     var Waterstation = db.ref().child("inspection");
-         
-   
+
     var dataSet = [];//array to save the values of the inputs fields of the form
 
-    moment().format('LL'); 
-   
- 
+    moment().format('LL');
+    console.log(moment().format('LL'))
+
     var table = $('#tableInspection').DataTable({
-               
-                pageLength : 10,
-                lengthMenu: [[10, 20, 30, 40, 50 -1], [10, 20, 30, 40, 50, 'all']],
-                data: dataSet,
 
-                
-                columnDefs: [
-                    {
-                            
-                        targets: [0], 
+        pageLength: 10,
+        lengthMenu: [[10, 20, 30, 40, 50 - 1], [10, 20, 30, 40, 50, 'all']],
+        data: dataSet,
+        columnDefs: [
+            {
+                targets: [0],
+                visible: false,
+                //hide the ID column which is the [0]                          
+            },
+            {
+                targets: -1,
+                defaultContent: "<div class='wrapper text-center'><div class='btn-group'><button class='btnEdit btn btn-primary' data-toggle='tooltip' title='Edit'>" + iconEdit + "</button><button class='btnDelete btn btn-danger' style='margin-left:6px;' data-toggle='tooltip' title='Delete'>" + iconClear + "</button></div></div>"
+            }
+        ],
+        "createdRow": function (row, data, index) {
+            $('td', row).eq(1).prevObject[2].innerText = moment(data[3]).format('DD-MM-YYYY')
 
-                        visible: false,
-                         //hide the ID column which is the [0]                          
-                    },
+            if (data[2] == 'Passed') {
 
-                
-                    {
-                        targets: -1,        
-                        defaultContent: "<div class='wrapper text-center'><div class='btn-group'><button class='btnEdit btn btn-primary' data-toggle='tooltip' title='Edit'>"+iconEdit+"</button><button class='btnDelete btn btn-danger' style='margin-left:6px;' data-toggle='tooltip' title='Delete'>"+iconClear+"</button></div></div>"
-                    }
-                ],
+                $('td', row).eq(1).css({
+                    'color': 'green',
+                });
+            }
 
-                
-                "createdRow":function(row,data,index){
-                    if (data[2]== 'Passed')
-                    {
-                        $('td',row).eq(1).css({
-                            
-                            'color': 'green',
-                        });
-                    }
+            else if (data[2] == 'Failed') {
+                $('td', row).eq(1).css({
 
+                    'color': 'red',
+                });
+            }
+        }
 
-                   else if(data[2]== 'Failed')
-                    {
-                        $('td',row).eq(1).css({
-                           
-                            'color': 'red',
-                        });
-                    }
-                }
+    });
 
-                
+    $('.edit').click(function () {
+        $('#modalIns').modal('show');
+    });
 
-            });
-
-
-          
-
-$('.edit').click(function(){
-     
-     $('#modalIns').modal('show');
-  });
-
-
-
-    Waterstation.on("child_added", data => {        
+    Waterstation.on("child_added", data => {
         dataSet = [data.key, data.child("Name").val(), data.child("Status").val(), data.child("date").val()];
         table.rows.add([dataSet]).draw();
     });
-    Waterstation.on('child_changed', data => {           
+    Waterstation.on('child_changed', data => {
         dataSet = [data.key, data.child("Name").val(), data.child("Status").val(), data.child("date").val()];
         table.row(rowEdited).data(dataSet).draw();
     });
-    Waterstation.on("child_removed", function() {
-        table.row(rowEliminated.parents('tr')).remove().draw();                     
+    Waterstation.on("child_removed", function () {
+        table.row(rowEliminated.parents('tr')).remove().draw();
     });
-          
-    $('form').submit(function(e){                         
+
+    $('form').submit(function (e) {
         e.preventDefault();
-        let id = $.trim($('#id').val());        
+        let id = $.trim($('#id').val());
         let Name = $.trim($('#Name').val());
-        let Status = $.trim($('#Status').val());         
-        let date = $.trim($('#date').val());                         
-        let idFirebase = id;        
-        if (idFirebase == ''){                      
+        let Status = $.trim($('#Status').val());
+        let date = $.trim($('#date').val());
+        let idFirebase = id;
+        if (idFirebase == '') {
             idFirebase = Waterstation.push().key;
-        };                
-        data = {Name:Name, Status:Status, date:date};             
+        };
+        data = { Name: Name, Status: Status, date: date };
         updateData = {};
         updateData[`/${idFirebase}`] = data;
         Waterstation.update(updateData);
-        id = '';        
+        id = '';
         $("form").trigger("reset");
         $('#modalIns').modal('hide');
     });
 
-
-     
-
-
     //Botones
-    $('#btnNew').click(function() {
-        $('#id').val('');        
+    $('#btnNew').click(function () {
+        $('#id').val('');
         $('#Name').val('');
-        $('#Status').val('');         
-        $('#date').val('');      
+        $('#Status').val('');
+        $('#date').val('');
         $("form").trigger("reset");
         $('#modalIns').modal('show');
-    });     
+    });
 
-
-
-    $("#tableInspection").on("click", ".btnEdit", function() {    
-        rowEdited = table.row($(this).parents('tr'));           
-        let row = $('#tableInspection').dataTable().fnGetData($(this).closest('tr'));               
+    $("#tableInspection").on("click", ".btnEdit", function () {
+        rowEdited = table.row($(this).parents('tr'));
+        let row = $('#tableInspection').dataTable().fnGetData($(this).closest('tr'));
         let id = row[0];
         console.log(id);
-        let Name = $(this).closest('tr').find('td:eq(0)').text(); 
-        let Status = $(this).closest('tr').find('td:eq(1)').text();        
-        let date = parseInt($(this).closest('tr').find('td:eq(2)').text());        
-        $('#id').val(id);        
+        let Name = $(this).closest('tr').find('td:eq(0)').text();
+        let Status = $(this).closest('tr').find('td:eq(1)').text();
+        let date = parseInt($(this).closest('tr').find('td:eq(2)').text());
+        $('#id').val(id);
         $('#Name').val(Name);
-        $('#Status').val(Status);                
-        $('#date').val(date); 
-                       
+        $('#Status').val(Status);
+        $('#date').val(date);
+
         $('#modalIns').modal('show');
 
+    });
 
-    });  
-  
-    $("#tableInspection").on("click", ".btnDelete", function() {   
+    $("#tableInspection").on("click", ".btnDelete", function () {
         rowEliminated = $(this);
         Swal.fire({
-        title: 'Are you sure you want to delete this record?',
-        text: "This process cannot be undone!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#d33',
-        cancelButtonColor: '#3085d6',
-        confirmButtonText: 'Delete'
+            title: 'Are you sure you want to delete this record?',
+            text: "This process cannot be undone!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Delete'
         }).then((result) => {
-        if (result.value) {
-            let row = $('#tableInspection').dataTable().fnGetData($(this).closest('tr'));            
-            let id = row[0];            
-            db.ref(`inspection/${id}`).remove()
-            Swal.fire('Deleted!', 'The Data has been removed.','success')
-        }
-        })        
-    });  
-
-
-   
-
-    
-    
+            if (result.value) {
+                let row = $('#tableInspection').dataTable().fnGetData($(this).closest('tr'));
+                let id = row[0];
+                db.ref(`inspection/${id}`).remove()
+                Swal.fire('Deleted!', 'The Data has been removed.', 'success')
+            }
+        })
+    });
 });
 
-
-document.getElementById('save').onclick = function(){
+document.getElementById('save').onclick = function () {
     Swal.fire(
         'Save!',
         'The Data has been saved',
         'success'
-      )
-  };
-  
-
+    )
+};
