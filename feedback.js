@@ -53,6 +53,11 @@ $(document).ready(function() {
 
                 
 
+                "createdRow":function(row,data,index){
+                    $('td', row).eq(1).prevObject[1].innerText = moment(data[2]).format('MM-DD-YYYY')
+                    
+                   
+                }
 
 
 
@@ -123,7 +128,7 @@ $('.edit').click(function(){
         let id = row[0];
         console.log(id);
         let Name = $(this).closest('tr').find('td:eq(0)').text();
-        let date = parseInt($(this).closest('tr').find('td:eq(1)').text());    
+        let date = moment($(this).closest('tr').find('td:eq(1)').text()).format('YYYY-MM-DD');    
         let comment = $(this).closest('tr').find('td:eq(2)').text();        
              
         $('#id').val(id);        

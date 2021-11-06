@@ -115,7 +115,7 @@ $(document).ready(function () {
         console.log(id);
         let Name = $(this).closest('tr').find('td:eq(0)').text();
         let Status = $(this).closest('tr').find('td:eq(1)').text();
-        let date = parseInt($(this).closest('tr').find('td:eq(2)').text());
+        let date = moment($(this).closest('tr').find('td:eq(2)').text()).format('YYYY-MM-DD')
         $('#id').val(id);
         $('#Name').val(Name);
         $('#Status').val(Status);
