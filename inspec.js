@@ -45,28 +45,22 @@ $(document).ready(function () {
             }
         ],
 
-        "dom": 'Bfrtip',  
+        "dom": 'C<"clear">Blfrtip', 
                 "buttons": [  
-                    {  
-                        extend: 'copy',  
-                        className: 'btn btn-dark rounded-0',  
-                        text: '<i class="far fa-copy"></i> Copy',
-                        exportOptions: {
-                            columns: ':visible',
-                            
-                        }  
-                    },  
+                  
+                  
                     {  
                         extend: 'excel',  
-                        className: 'btn btn-dark rounded-0',  
+                        className: 'btn btn-primary rounded-0',  
                         text: '<i class="far fa-file-excel"></i> Excel',
+                        title:'Alpha Lab Test',
                         exportOptions: {
                             columns: ':visible'
                         }  
                     },  
                     {  
                         extend: 'pdf',  
-                        className: 'btn btn-dark rounded-0',  
+                        className: 'btn btn-primary rounded-0',  
                         text: '<i class="far fa-file-pdf"></i> Pdf',
                         exportOptions: {
                             columns: ':visible'
@@ -74,7 +68,7 @@ $(document).ready(function () {
                     },  
                     {  
                         extend: 'csv',  
-                        className: 'btn btn-dark rounded-0',  
+                        className: 'btn btn-primary rounded-0',  
                         text: '<i class="fas fa-file-csv"></i> CSV',
                         exportOptions: {
                             columns: ':visible'
@@ -83,12 +77,26 @@ $(document).ready(function () {
                     },  
                     {  
                         extend: 'print',  
-                        className: 'btn btn-dark rounded-0',  
+                        className: 'btn btn-primary rounded-0',  
                         text: '<i class="fas fa-print"></i> Print' ,
+                        title:'Alpha Lab Test',
                         exportOptions: {
                             columns: ':visible'
                         } 
-                    }  
+                    },
+
+                    {  
+                        extend: 'colvis',  
+                        className: 'btn btn-primary rounded-0',  
+                        text: '<i class="fas fa-prints"></i> Column Visibility' ,
+                        title:'Alpha Lab Test',
+                        exportOptions: {
+                            columns: ':visible'
+                        } 
+                        
+                    },
+                    
+
                    
                 ]  ,
                
