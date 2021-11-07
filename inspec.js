@@ -40,9 +40,59 @@ $(document).ready(function () {
             },
             {
                 targets: -1,
-                defaultContent: "<div class='wrapper text-center'><div class='btn-group'><button class='btnEdit btn btn-primary' data-toggle='tooltip' title='Edit'>" + iconEdit + "</button><button class='btnDelete btn btn-danger' style='margin-left:6px;' data-toggle='tooltip' title='Delete'>" + iconClear + "</button></div></div>"
+                defaultContent: "<div class='wrapper text-center'><div class='btn-group'><button class='btnEdit btn btn-primary' data-toggle='tooltip' title='Edit'>" + iconEdit + "</button><button class='btnDelete btn btn-danger' style='margin-left:6px;' data-toggle='tooltip' title='Delete'>" + iconClear + "</button></div></div>",
+                
             }
         ],
+
+        "dom": 'Bfrtip',  
+                "buttons": [  
+                    {  
+                        extend: 'copy',  
+                        className: 'btn btn-dark rounded-0',  
+                        text: '<i class="far fa-copy"></i> Copy',
+                        exportOptions: {
+                            columns: ':visible',
+                            
+                        }  
+                    },  
+                    {  
+                        extend: 'excel',  
+                        className: 'btn btn-dark rounded-0',  
+                        text: '<i class="far fa-file-excel"></i> Excel',
+                        exportOptions: {
+                            columns: ':visible'
+                        }  
+                    },  
+                    {  
+                        extend: 'pdf',  
+                        className: 'btn btn-dark rounded-0',  
+                        text: '<i class="far fa-file-pdf"></i> Pdf',
+                        exportOptions: {
+                            columns: ':visible'
+                        }  
+                    },  
+                    {  
+                        extend: 'csv',  
+                        className: 'btn btn-dark rounded-0',  
+                        text: '<i class="fas fa-file-csv"></i> CSV',
+                        exportOptions: {
+                            columns: ':visible'
+                        } 
+                          
+                    },  
+                    {  
+                        extend: 'print',  
+                        className: 'btn btn-dark rounded-0',  
+                        text: '<i class="fas fa-print"></i> Print' ,
+                        exportOptions: {
+                            columns: ':visible'
+                        } 
+                    }  
+                   
+                ]  ,
+               
+  //--------add color in datatables--------//
         "createdRow": function (row, data, index) {
             $('td', row).eq(1).prevObject[2].innerText = moment(data[3]).format('MM-DD-YYYY')
 
@@ -63,6 +113,8 @@ $(document).ready(function () {
 
     });
 
+
+
     $('.edit').click(function () {
         $('#modalIns').modal('show');
     });
@@ -78,6 +130,7 @@ $(document).ready(function () {
     Waterstation.on("child_removed", function () {
         table.row(rowEliminated.parents('tr')).remove().draw();
     });
+
 
     $('form').submit(function (e) {
         e.preventDefault();
@@ -98,7 +151,7 @@ $(document).ready(function () {
         $('#modalIns').modal('hide');
     });
 
-    //Botones
+    //Botons
     $('#btnNew').click(function () {
         $('#id').val('');
         $('#Name').val('');
@@ -108,6 +161,8 @@ $(document).ready(function () {
         $('#modalIns').modal('show');
     });
 
+
+//---------------------Edit Data-----------------//
     $("#tableInspection").on("click", ".btnEdit", function () {
         rowEdited = table.row($(this).parents('tr'));
         let row = $('#tableInspection').dataTable().fnGetData($(this).closest('tr'));
@@ -124,6 +179,9 @@ $(document).ready(function () {
         $('#modalIns').modal('show');
 
     });
+
+
+//---------------------Delete Data-----------------//
 
     $("#tableInspection").on("click", ".btnDelete", function () {
         rowEliminated = $(this);
@@ -146,6 +204,8 @@ $(document).ready(function () {
     });
 });
 
+
+//---------------------For save button----------------//
 document.getElementById('save').onclick = function () {
     Swal.fire(
         'Save!',

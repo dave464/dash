@@ -314,7 +314,7 @@ https://firebase.google.com/docs/web/setup#available-libraries -->
 
 
 
-        //----------- Pie Graph-----------//
+//-------------------------- Pie Graph-----------------------//
 
 
         google.charts.load("current", {packages:["corechart"]});
@@ -336,7 +336,7 @@ https://firebase.google.com/docs/web/setup#available-libraries -->
         chart.draw(data, options);
       }
 
-//--------------Passed------------//
+//---------------------Passed-------------------------//
       var ref = firebase.database().ref("inspection/");
       let passedCount = 0;
       const passed3 = ref
@@ -354,7 +354,7 @@ https://firebase.google.com/docs/web/setup#available-libraries -->
           
         });
 
-  //--------------Failed---------------//
+  //-------------------Failed---------------------//
         var ref = firebase.database().ref("inspection/");
       let failedCount = 0;
       const count4 = ref
@@ -373,7 +373,7 @@ https://firebase.google.com/docs/web/setup#available-libraries -->
         });
 
 
-//-----------------Bar Chart-------------------//
+//-------------------Bar Chart-------------------//
 
 google.charts.load('current', {'packages':['bar']});
       google.charts.setOnLoadCallback(drawStuff);
@@ -426,8 +426,7 @@ var ref = firebase.database().ref("waterstation/");
           
         });
 
-
-      //-------------------------Brgy.2----------------------------------//
+  //-------------------------Brgy.2----------------------------------//
 
 var ref = firebase.database().ref("waterstation/");
       let B_2Count = 0;
@@ -451,13 +450,12 @@ var ref = firebase.database().ref("waterstation/");
 
 
 
-
-
-
-
     </script>
 
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
+
+
+
+    
 
     <style type="text/css">
       #ex-table_length {
@@ -489,18 +487,7 @@ var ref = firebase.database().ref("waterstation/");
         font-weight: 400;
       }
 
-      #weatherwidget-io a {
-        height: 500px; 
-      }
-
-      #weatherWidgetInner{
-        height: 250px;
-
-      } 
-
-      #weatherInfo {
-        height: 500px; 
-      }
+     
     </style>
 
 
