@@ -45,7 +45,7 @@ $(document).ready(function () {
             }
         ],
 
-        "dom": 'C<"clear">Blfrtip', 
+        "dom": 'Blfrtip',
                 "buttons": [  
                   
                   
@@ -62,6 +62,7 @@ $(document).ready(function () {
                         extend: 'pdf',  
                         className: 'btn btn-primary rounded-0',  
                         text: '<i class="far fa-file-pdf"></i> Pdf',
+                        title:'Alpha Lab Test',
                         exportOptions: {
                             columns: ':visible'
                         }  
@@ -70,6 +71,7 @@ $(document).ready(function () {
                         extend: 'csv',  
                         className: 'btn btn-primary rounded-0',  
                         text: '<i class="fas fa-file-csv"></i> CSV',
+                        title:'Alpha Lab Test',
                         exportOptions: {
                             columns: ':visible'
                         } 
@@ -122,6 +124,9 @@ $(document).ready(function () {
     });
 
 
+
+
+    
 
     $('.edit').click(function () {
         $('#modalIns').modal('show');
