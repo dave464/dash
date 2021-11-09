@@ -55,7 +55,7 @@ $(document).ready(function () {
                         text: '<i class="far fa-file-excel"></i> Excel',
                         title:'Alpha Lab Test',
                         exportOptions: {
-                            columns: ':visible'
+                            columns: ':visible:not(:last-child)'
                         }  
                     },  
                     {  
@@ -64,7 +64,7 @@ $(document).ready(function () {
                         text: '<i class="far fa-file-pdf"></i> Pdf',
                         title:'Alpha Lab Test',
                         exportOptions: {
-                            columns: ':visible'
+                            columns: ':visible:not(:last-child)'
                         }  
                     },  
                     {  
@@ -73,7 +73,7 @@ $(document).ready(function () {
                         text: '<i class="fas fa-file-csv"></i> CSV',
                         title:'Alpha Lab Test',
                         exportOptions: {
-                            columns: ':visible'
+                            columns: ':visible:not(:last-child)'
                         } 
                           
                     },  
@@ -83,22 +83,10 @@ $(document).ready(function () {
                         text: '<i class="fas fa-print"></i> Print' ,
                         title:'Alpha Lab Test',
                         exportOptions: {
-                            columns: ':visible'
+                            columns: ':visible:not(:last-child)'
+                            
                         } 
                     },
-
-                    {  
-                        extend: 'colvis',  
-                        className: 'btn btn-primary rounded-0',  
-                        text: '<i class="fas fa-prints"></i> Column Visibility' ,
-                        title:'Alpha Lab Test',
-                        exportOptions: {
-                            columns: ':visible'
-                        } 
-                        
-                    },
-                    
-
                    
                 ]  ,
                
