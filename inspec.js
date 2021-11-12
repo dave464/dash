@@ -112,7 +112,27 @@ $(document).ready(function () {
     });
 
 
+//----------------- Waterstation Dropdown list ---------------//
+    var ref = firebase.database().ref("waterstation/");
+   
+    const Wlist = ref.orderByChild("Name").on("child_added", function (snapshot) {
+        const waterList = [];
+        var Waterlist = snapshot.val().Name;
 
+        waterList.push(Waterlist);
+        console.log(waterList);
+
+      var select =document.getElementById("Name")   
+        for(var i=0; i<waterList.length; i++)
+        {
+            var option =document.createElement("OPTION"),
+            txt= document.createTextNode(waterList[i]);
+            option.appendChild(txt);
+            select.insertBefore(option,select.lastChild);   
+        }   
+       
+      });
+//----------------------------------------------------------------//
 
     
 
